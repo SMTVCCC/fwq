@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的世界 追击时刻 - 服务器介绍</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6', // 主色调：蓝色（信任、科技）
+                        secondary: '#10B981', // 辅助色：绿色（活力、自然）
+                        accent: '#F59E0B', // 强调色：橙色（冒险、热情）
+                        dark: '#1F2937', // 深色
+                        light: '#F9FAFB', // 浅色
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            .animate-pulse-slow {
+                animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-dark text-light min-h-screen flex flex-col">
+    <!-- 背景 -->
+    <div class="fixed inset-0 -z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark/70"></div>
+        <img src="bg.png" alt="Minecraft背景" class="w-full h-full object-cover opacity-40">
+    </div>
+
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-dark/80 bg-blur border-b border-primary/20">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="icon.png" alt="服务器Logo" class="w-10 h-10 rounded-lg object-cover">
+                <h1 class="text-xl font-bold text-white">追击时刻PVP</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-white hover:text-primary transition-colors duration-300">首页</a>
+                <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">仅支持Fabric 1.21.3</a>
+                <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">需要下载Fabric API（版本随意）</a>
+            </nav>
+            <button class="md:hidden text-white text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <!-- 服务器信息 -->
+        <section class="text-center mb-16">
+            <div class="inline-block mb-6 relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-75 animate-pulse-slow"></div>
+                <div class="relative bg-dark/80 px-8 py-3 rounded-full border border-primary/30">
+                    <span class="text-lg font-semibold text-white flex items-center">
+                        <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        服务器在线: 15/100 玩家
+                    </span>
+                </div>
+            </div>
+            <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-4 text-shadow-lg">
+                我的世界 <span class="text-accent">追击时刻</span>
+            </h2>
+            <p class="text-xl text-white/80 max-w-3xl mx-auto mb-8">
+                加入我们的服务器，体验刺激的PVP战斗、探索无限世界，与好友一起创造难忘的游戏回忆！
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="px-4 py-2 rounded-full bg-primary/20 border border-primary/40 text-sm text-white/90">
+                    <i class="fa fa-clock-o mr-2"></i>24/7 全天候开放
+                </div>
+                <div class="px-4 py-2 rounded-full bg-secondary/20 border border-secondary/40 text-sm text-white/90">
+                    <i class="fa fa-rocket mr-2"></i>高性能服务器
+                </div>
+                <div class="px-4 py-2 rounded-full bg-accent/20 border border-accent/40 text-sm text-white/90">
+                    <i class="fa fa-users mr-2"></i>Fabric 1.21.3
+                </div>
+            </div>
+        </section>
+
+        <!-- 进入方式选择 -->
+        <section class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-16">
+            <!-- 直接进入服务器 -->
+            <div class="bg-dark/60 border border-primary/30 rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                        <i class="fa fa-sign-in text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">直接进入服务器</h3>
+                </div>
+                <p class="text-white/70 mb-6">
+                    通过官方客户端直接连接服务器，无需额外安装。
+                </p>
+                <div class="bg-dark/80 rounded-lg p-4 mb-6 border border-red-500/30">
+                    <p class="text-red-400 text-sm">
+                        <i class="fa fa-exclamation-triangle mr-2"></i>
+                        直接进入服务器无法享受性能优化和皮肤显示，建议下载整合包进入服务器。
+                    </p>
+                </div>
+                <button id="getAddressBtn" class="w-full py-3 bg-primary hover:bg-primary/80 text-white rounded-lg transition-colors duration-300 flex items-center justify-center">
+                    <i class="fa fa-server mr-2"></i>
+                    获取服务器地址
+                </button>
+            </div>
+
+            <!-- 下载整合包进入 -->
+            <div class="bg-dark/60 border border-secondary/30 rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-secondary/20">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mr-4">
+                        <i class="fa fa-download text-secondary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">下载整合包进入服务器</h3>
+                </div>
+                <p class="text-white/70 mb-6">
+                    下载我们精心准备的整合包，一键导入即可享受完整游戏体验。
+                </p>
+                <div class="bg-dark/80 rounded-lg p-4 mb-6 border border-green-500/30">
+                    <p class="text-green-400 text-sm">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        通过skinlittle登录，享受皮肤显示，和性能优化模组。即可进入服务器！
+                    </p>
+                </div>
+                <button id="downloadBtn" class="w-full py-3 bg-secondary hover:bg-secondary/80 text-white rounded-lg transition-colors duration-300 flex items-center justify-center">
+                    <i class="fa fa-file-archive-o mr-2"></i>
+                    下载追击时刻PVP一键导入整合包.mrpack
+                </button>
+            </div>
+        </section>
+
+        <!-- 服务器特色 -->
+        <section class="max-w-5xl mx-auto mb-16">
+            <h3 class="text-2xl font-bold text-center mb-8 text-white">服务器特色</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-dark/50 p-5 rounded-lg border border-primary/20 transform transition-all duration-300 hover:translate-y-[-5px]">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                        <i class="fa fa-bolt text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">优化性能</h4>
+                    <p class="text-white/70 text-sm">
+                        我们的服务器采用高性能硬件和优化配置，添加了优化mod，确保游戏流畅运行，减少延迟。
+                    </p>
+                </div>
+                <div class="bg-dark/50 p-5 rounded-lg border border-primary/20 transform transition-all duration-300 hover:translate-y-[-5px]">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                        <i class="fa fa-paint-brush text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">自定义内容</h4>
+                    <p class="text-white/70 text-sm">
+                        丰富的自定义插件和模组，带来独特的游戏体验，让你玩出不一样的精彩。
+                    </p>
+                </div>
+                <div class="bg-dark/50 p-5 rounded-lg border border-primary/20 transform transition-all duration-300 hover:translate-y-[-5px]">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                        <i class="fa fa-shield text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">安全保障</h4>
+                    <p class="text-white/70 text-sm">
+                        严格的反作弊系统和24小时监控，确保公平的游戏环境，让你安心游戏。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 玩家截图 -->
+        <section class="max-w-5xl mx-auto mb-16">
+            <div class="w-full">
+                <video controls autoplay muted loop playsinline class="rounded-lg w-full">
+                    <source src="sp.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section class="max-w-3xl mx-auto">
+            <h3 class="text-2xl font-bold text-center mb-8 text-white">常见问题</h3>
+            <div class="space-y-4">
+                <div class="bg-dark/50 rounded-lg border border-primary/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">如何安装整合包？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-white/70 text-sm">
+                            点击"下载整合包进入服务器"按钮，下载mrpack文件，打开PCl2或HMCL中进入版本选择-导入整合包，选择我们下载的文件即可。
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-dark/50 rounded-lg border border-primary/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">服务器支持哪些版本？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-white/70 text-sm">
+                            我们的服务器仅支持Minecraft Java版 Fabric 1.21.3 ！整合包中已经包含了正确的游戏版本，无需额外安装。
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-dark/50 rounded-lg border border-primary/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">如何更改我的皮肤？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-white/70 text-sm">
+                            如果你使用整合包进入服务器，可以通过skinlittle服务更改皮肤。访问skinlittle官网，注册账号并上传你的皮肤，然后在游戏中登录即可显示自定义皮肤。
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-dark/50 rounded-lg border border-primary/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">手机也能玩！？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-white/70 text-sm">
+                            https://www.bilibili.com/video/BV1dK411a7hF/?spm_id_from=333.337.search-card.all.click
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark/80 border-t border-primary/20 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">追击时刻</h4>
+                    <p class="text-white/60 text-sm">
+                        一个充满激情和挑战的Minecraft服务器，提供精彩的PVP战斗和无限的创造可能。
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">
+                            <i class="fa fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">版本信息</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">仅支持Fabric</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">1.21.3</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">需要下载</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-primary transition-colors duration-300">Fabric API（版本随意）</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-2"></i>
+                            <span class="text-white/60">smtoffice@yeah.net</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-primary mt-1 mr-2"></i>
+                            <span class="text-white/60">24/7 全天候支持</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-6 text-center text-white/40 text-sm">
+                <p>© 2025 追击时刻 Minecraft 服务器. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 地址弹窗 -->
+    <div id="addressModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative bg-dark border border-primary/40 rounded-xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <button id="closeModal" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors duration-300">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
+                    <i class="fa fa-server text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">服务器地址</h3>
+                <p class="text-white/70 mb-6">
+                    请发送邮件至以下邮箱获取服务器地址：
+                </p>
+                <div class="relative mb-6">
+                    <input type="text" id="emailAddress" value="smtoffice@yeah.net" readonly class="w-full bg-dark/80 border border-primary/30 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button id="copyBtn" class="absolute right-2 top-2 bg-primary hover:bg-primary/80 text-white rounded py-1 px-3 text-sm transition-colors duration-300">
+                        复制
+                    </button>
+                </div>
+                <p class="text-white/60 text-sm mb-6">
+                    点击复制按钮后，向该邮箱发送邮件即可获取服务器地址。
+                </p>
+                <button id="sendEmailBtn" class="w-full py-3 bg-primary hover:bg-primary/80 text-white rounded-lg transition-colors duration-300 flex items-center justify-center">
+                    <i class="fa fa-envelope mr-2"></i>
+                    发送邮件获取地址
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 下载确认弹窗 -->
+    <div id="downloadModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative bg-dark border border-secondary/40 rounded-xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="downloadModalContent">
+            <button id="closeDownloadModal" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors duration-300">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-6">
+                    <i class="fa fa-download text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">下载整合包</h3>
+                <p class="text-white/70 mb-6">
+                    你确定要下载追击时刻PVP一键导入整合包吗？
+                </p>
+                <div class="bg-dark/80 rounded-lg p-4 mb-6 border border-secondary/30 text-left">
+                    <p class="text-secondary/90 text-sm">
+                        <i class="fa fa-info-circle mr-2"></i>
+                        整合包信息：
+                    </p>
+                    <ul class="text-white/70 text-sm mt-2 space-y-1 ml-6 list-disc">
+                        <li>Minecraft 版本: 1.21.3</li>
+                        <li>包含模组: 6个</li>
+                        <li>文件大小: 约60MB</li>
+                        <li>优化内容: 性能提升、皮肤显示、游戏体验增强</li>
+                    </ul>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="cancelDownloadBtn" class="flex-1 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors duration-300">
+                        取消
+                    </button>
+                    <button id="confirmDownloadBtn" class="flex-1 py-3 bg-secondary hover:bg-secondary/80 text-white rounded-lg transition-colors duration-300 flex items-center justify-center">
+                        <i class="fa fa-download mr-2"></i>
+                        确认下载
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知提示 -->
+    <div id="notification" class="fixed bottom-6 right-6 bg-dark border border-primary/40 rounded-lg p-4 max-w-sm w-full transform transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-start">
+        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3 flex-shrink-0">
+            <i class="fa fa-check text-primary"></i>
+        </div>
+        <div>
+            <h4 class="font-semibold text-white">复制成功</h4>
+            <p class="text-white/70 text-sm">服务器邮箱地址已复制到剪贴板</p>
+        </div>
+        <button id="closeNotification" class="ml-auto text-white/60 hover:text-white transition-colors duration-300">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+
+    <script>
+        // 模态框动画
+        const addressModal = document.getElementById('addressModal');
+        const modalContent = document.getElementById('modalContent');
+        const downloadModal = document.getElementById('downloadModal');
+        const downloadModalContent = document.getElementById('downloadModalContent');
+        const notification = document.getElementById('notification');
+        
+        // 获取服务器地址按钮
+        document.getElementById('getAddressBtn').addEventListener('click', () => {
+            addressModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+        
+        // 关闭地址模态框
+        document.getElementById('closeModal').addEventListener('click', closeAddressModal);
+        
+        function closeAddressModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                addressModal.classList.add('hidden');
+            }, 300);
+        }
+        
+        // 点击模态框外部关闭
+        addressModal.addEventListener('click', (e) => {
+            if (e.target === addressModal) {
+                closeAddressModal();
+            }
+        });
+        
+        // 下载整合包按钮
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            downloadModal.classList.remove('hidden');
+            setTimeout(() => {
+                downloadModalContent.classList.remove('scale-95', 'opacity-0');
+                downloadModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+        
+        // 关闭下载模态框
+        document.getElementById('closeDownloadModal').addEventListener('click', closeDownloadModal);
+        document.getElementById('cancelDownloadBtn').addEventListener('click', closeDownloadModal);
+        
+        function closeDownloadModal() {
+            downloadModalContent.classList.remove('scale-100', 'opacity-100');
+            downloadModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                downloadModal.classList.add('hidden');
+            }, 300);
+        }
+        
+        // 点击下载模态框外部关闭
+        downloadModal.addEventListener('click', (e) => {
+            if (e.target === downloadModal) {
+                closeDownloadModal();
+            }
+        });
+        
+        // 复制邮箱地址
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const emailAddress = document.getElementById('emailAddress');
+            emailAddress.select();
+            document.execCommand('copy');
+            
+            // 显示通知
+            notification.classList.remove('translate-y-20', 'opacity-0');
+            notification.classList.add('translate-y-0', 'opacity-100');
+            
+            // 3秒后自动关闭通知
+            setTimeout(() => {
+                closeNotification();
+            }, 3000);
+        });
+        
+        // 关闭通知
+        document.getElementById('closeNotification').addEventListener('click', closeNotification);
+        
+        function closeNotification() {
+            notification.classList.remove('translate-y-0', 'opacity-100');
+            notification.classList.add('translate-y-20', 'opacity-0');
+        }
+        
+        // 发送邮件按钮
+        document.getElementById('sendEmailBtn').addEventListener('click', () => {
+            window.location.href = 'mailto:smtoffice@yeah.net?subject=追击时刻服务器地址请求';
+            closeAddressModal();
+        });
+        
+        // 确认下载按钮
+        document.getElementById('confirmDownloadBtn').addEventListener('click', () => {
+            // 模拟下载链接
+            window.open('追击时刻PVP一键导入整合包.mrpack');
+            closeDownloadModal();
+        });
+        
+        // FAQ 切换
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    
